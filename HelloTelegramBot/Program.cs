@@ -11,9 +11,9 @@ namespace HelloTelegramBot
 {
     public class Program
     {
-        public static void Main(string[] args)
+        public static async Task Main(string[] args)
         {
-            CreateHostBuilder(args).Build().Run();
+            await CreateHostBuilder(args).Build().RunAsync();
         }
 
         private static IHostBuilder CreateHostBuilder(string[] args) =>

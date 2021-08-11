@@ -5,7 +5,7 @@ namespace HelloTelegramBot.Utils
 {
     public static class TimeUtil
     {
-        public static string ToHumanDuration(this TimeSpan duration, bool displaySign = true)
+        public static string ToHumanDuration(this TimeSpan duration, bool displaySign = false)
         {
             // if (duration == null) return null;
 

@@ -5,6 +5,18 @@ namespace HelloTelegramBot.Utils
 {
     public static class TimeUtil
     {
+
+        public static string GetDelay(this DateTime time)
+        {
+            var date1 = DateTime.Now.ToUniversalTime();
+            var date2 = time;
+            // Console.WriteLine($"Date1: {date1}, Date2: {date2}");
+
+            var timeSpan = (date1 - date2);
+
+            return timeSpan.ToString(@"s\,fff");
+        }
+
         public static string ToHumanDuration(this TimeSpan duration, bool displaySign = false)
         {
             // if (duration == null) return null;

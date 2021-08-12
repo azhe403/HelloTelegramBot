@@ -9,7 +9,7 @@ using HelloTelegramBot.Utils;
 
 namespace HelloTelegramBot.Handlers
 {
-    public class PingHandler: BotEventHandler
+    public class PingHandler : ZiziEventHandler
     {
         [Command("ping", CommandParseMode.Both)]
         public async Task Ping()
@@ -18,7 +18,9 @@ namespace HelloTelegramBot.Handlers
             var processStartTime = currProcess.StartTime;
             var processUptime = (DateTime.Now - processStartTime);
 
-            await Bot.SendTextMessageAsync(Chat, $"Pong!\nUptime: {processUptime.ToHumanDuration()}");
+            await Bot.SendTextMessageAsync(Chat, $"Pong!" +
+                                                 $"\nUptime: {processUptime.ToHumanDuration()}" +
+                                                 $"\nTime: {TimeInit}");
         }
     }
 }

@@ -7,6 +7,7 @@ namespace HelloTelegramBot.Extensions
         public static void ConfigureSerilog()
         {
             Log.Logger = new LoggerConfiguration()
+                .MinimumLevel.Verbose()
                 .WriteTo.Console()
                 .CreateLogger();
         }

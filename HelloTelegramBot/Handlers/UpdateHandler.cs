@@ -3,6 +3,7 @@ using BotFramework;
 using BotFramework.Attributes;
 using BotFramework.Enums;
 using BotFramework.Setup;
+using HelloTelegramBot.Utils;
 using Serilog;
 
 namespace HelloTelegramBot.Handlers
@@ -13,8 +14,9 @@ namespace HelloTelegramBot.Handlers
         [Priority(10)]
         public async Task<bool> OnUpdate()
         {
-            await Bot.SendTextMessageAsync(Chat,"New Update!" +
-                                                $"\nTime: {TimeInit}");
+            Log.Debug("New Update: {@RawUpdate}", RawUpdate);
+
+            await Task.Delay(0);
 
             return true;
         }

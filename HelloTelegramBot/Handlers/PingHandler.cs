@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using BotFramework;
@@ -6,6 +6,7 @@ using BotFramework.Attributes;
 using BotFramework.Setup;
 using BotFramework.Utils;
 using HelloTelegramBot.Utils;
+using Telegram.Bot.Types.Enums;
 
 namespace HelloTelegramBot.Handlers
 {
@@ -18,9 +19,16 @@ namespace HelloTelegramBot.Handlers
             var processStartTime = currProcess.StartTime;
             var processUptime = (DateTime.Now - processStartTime);
 
-            await Bot.SendTextMessageAsync(Chat, $"Pong!" +
-                                                 $"\nUptime: {processUptime.ToHumanDuration()}" +
-                                                 $"\nTime: {TimeInit}");
+            var text = $"Pong!" +
+                       $"\nUptime: {processUptime.ToHumanDuration()}" +
+                       $"\nTime: {TimeInit}";
+
+            var htmlMsg = new HtmlString()
+                .Bold("🏓 Pong!").Br().Br()
+                .Bold("🏃 Runtime: ").Code(processStartTime.ToString("yyyy-MM-dd HH:mm:ss.mmm")).Br()
+                .Bold("⏱ Uptime: ").Code(processUptime.ToHumanDuration()).Br();
+
+            await SendMessageTextAsync(htmlMsg, parseMode:ParseMode.Html);
         }
     }
 }

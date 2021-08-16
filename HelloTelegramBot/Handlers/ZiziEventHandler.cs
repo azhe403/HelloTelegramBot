@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Threading.Tasks;
 using BotFramework;
 using BotFramework.Utils;
@@ -17,5 +17,25 @@ namespace HelloTelegramBot.Handlers
 
         protected bool HasUsername => From.Username != null;
 
+        protected async Task SendMessageTextAsync(
+            HtmlString message,
+            IReplyMarkup replyMarkup = null,
+            ParseMode parseMode = ParseMode.Html,
+            ChatId chatId = null,
+            bool addStamp = true
+        )
+        {
+            if (chatId == null) chatId = Chat.Id;
+
+            if (addStamp)
+            {
+                message = new HtmlString()
+                    .Append(message).Br()
+                    .Code($"⏱ {TimeInit} s").Text(" | ").Code($"⌛ {TimeProc} s");
+            }
+
+            Log.Debug("Sending message to {chat}", chatId);
+            await Bot.SendTextMessageAsync(chatId, message.ToString(), parseMode);
+        }
     }
 }

@@ -1,5 +1,11 @@
-﻿.idea
+.idea
+.vs
 bin
 obj
 
+*.csproj.user
+*.esproj.user
 appsettings.json
+package-lock.json
+
+*DotSettings.user
